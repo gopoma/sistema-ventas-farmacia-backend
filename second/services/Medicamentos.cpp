@@ -1,14 +1,5 @@
 #include "Medicamentos.h"
 
-ostream& operator<<(ostream& os, const Medicamento& m) {
-    os << "Codigo:\t\t"     << m.id         << "\n";
-    os << "Nombre:\t\t"     << m.nombre     << "\n";
-    os << "Precio:\t\t"     << m.precio     << "\n";
-    os << "Cantidad:\t"   << m.cantidad   << "\n";
-
-    return os;
-}
-
 void inicializarMedicamentos() {
     verificarOInicializarArchivo(RMedicamento);
 
@@ -24,31 +15,14 @@ void inicializarMedicamentos() {
     medicamentosEntrada.close();
 }
 
-void agregarMedicamento() {
-    Medicamento nuevoMedicamento;
-
-
-
-    string nombre; printf("Nombre: ");
-    cin.ignore(); getline(cin, nombre); strcpy(nuevoMedicamento.nombre, nombre.c_str());
-
-    printf("Precio (En Centimos de S/.): ");
-    cin >> nuevoMedicamento.precio;
-    printf("Cantidad: ");
-    cin >> nuevoMedicamento.cantidad;
-
-
-
+void agregarMedicamento(Medicamento& nuevoMedicamento) {
     nuevoMedicamento.id = idMedicamentoDisponible++;
+
     medicamentos.push_back(nuevoMedicamento);
 }
 
-void mostrarMedicamentos() {
-    printf("Medicamentos:\n");
-    for(size_t i = 0; i < medicamentos.size(); i++) {
-        cout << "Medicamento #" << (i+1) << ":\n";
-        cout << medicamentos[i] << "\n";
-    }
+vector<Medicamento> obtenerMedicamentos() {
+    return medicamentos;
 }
 
 void guardarMedicamentos() {

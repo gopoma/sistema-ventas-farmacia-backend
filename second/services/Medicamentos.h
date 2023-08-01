@@ -3,10 +3,9 @@
 
 #include "../Definitions.h"
 
-ostream& operator<<(ostream& os, const Medicamento& m);
 void inicializarMedicamentos();
-void agregarMedicamento();
-void mostrarMedicamentos();
+void agregarMedicamento(Medicamento& nuevoMedicamento);
+vector<Medicamento> obtenerMedicamentos();
 void guardarMedicamentos();
 
 #endif

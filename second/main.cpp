@@ -3,6 +3,8 @@
 #include "./services/Medicamentos.h"
 #include "./services/Medicamentos.cpp"
 
+ostream& operator<<(ostream& os, const Cliente& cli);
+ostream& operator<<(ostream& os, const Medicamento& m);
 void inicializar();
 void mostrarMenu();
 void guardar();
@@ -20,19 +22,51 @@ int main() {
 
         switch (opcion) {
             case 1: {
-                agregarCliente();
+                Cliente nuevoCliente;
+
+                string nombre; printf("Nombre: ");
+                cin.ignore(); getline(cin, nombre); strcpy(nuevoCliente.nombre, nombre.c_str());
+
+                // TODO: Agregar Validaciones [DNI] - unique - maxLength[8]
+                printf("DNI: "); cin >> nuevoCliente.dni;
+                // TODO: Agregar Validaciones [Telefono] - maxLength[9]
+                printf("Telefono: "); cin >> nuevoCliente.telefono;
+
+                agregarCliente(nuevoCliente);
                 break;
             }
             case 2: {
-                mostrarClientes();
+                vector<Cliente> clientes = obtenerClientes();
+
+                printf("Clientes:\n");
+                for(size_t i = 0; i < clientes.size(); i++) {
+                    cout << "Cliente #" << (i+1) << ":\n";
+                    cout << clientes[i] << "\n";
+                }
                 break;
             }
             case 3: {
-                agregarMedicamento();
+                Medicamento nuevoMedicamento;
+
+                string nombre; printf("Nombre: ");
+                cin.ignore(); getline(cin, nombre); strcpy(nuevoMedicamento.nombre, nombre.c_str());
+
+                printf("Precio (En Centimos de S/.): ");
+                cin >> nuevoMedicamento.precio;
+                printf("Cantidad: ");
+                cin >> nuevoMedicamento.cantidad;
+
+                agregarMedicamento(nuevoMedicamento);
                 break;
             }
             case 4: {
-                mostrarMedicamentos();
+                vector<Medicamento> medicamentos = obtenerMedicamentos();
+
+                printf("Medicamentos:\n");
+                for(size_t i = 0; i < medicamentos.size(); i++) {
+                    cout << "Medicamento #" << (i+1) << ":\n";
+                    cout << medicamentos[i] << "\n";
+                }
                 break;
             }
             case 5: {
@@ -58,6 +92,24 @@ int main() {
     printf("Gracias por utilizar el sistema de farmacia.\n");
 
     return 0;
+}
+
+ostream& operator<<(ostream& os, const Cliente& cli) {
+    os << "Codigo:\t\t" << cli.id       << "\n";
+    os << "Nombre:\t\t" << cli.nombre   << "\n";
+    os << "DNI:\t\t"    << cli.dni      << "\n";
+    os << "Telefono:\t" << cli.telefono << "\n";
+
+    return os;
+}
+
+ostream& operator<<(ostream& os, const Medicamento& m) {
+    os << "Codigo:\t\t"     << m.id         << "\n";
+    os << "Nombre:\t\t"     << m.nombre     << "\n";
+    os << "Precio:\t\t"     << m.precio     << "\n";
+    os << "Cantidad:\t"     << m.cantidad   << "\n";
+
+    return os;
 }
 
 void inicializar() {

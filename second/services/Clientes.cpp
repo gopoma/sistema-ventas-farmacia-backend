@@ -1,14 +1,5 @@
 #include "Clientes.h"
 
-ostream& operator<<(ostream& os, const Cliente& cli) {
-    os << "Codigo:\t\t" << cli.id       << "\n";
-    os << "Nombre:\t\t" << cli.nombre   << "\n";
-    os << "DNI:\t\t"    << cli.dni      << "\n";
-    os << "Telefono:\t" << cli.telefono << "\n";
-
-    return os;
-}
-
 void inicializarClientes() {
     verificarOInicializarArchivo(RCliente);
 
@@ -24,31 +15,14 @@ void inicializarClientes() {
     clientesEntrada.close();
 }
 
-void agregarCliente() {
-    Cliente nuevoCliente;
-
-
-
-    string nombre; printf("Nombre: ");
-    cin.ignore(); getline(cin, nombre); strcpy(nuevoCliente.nombre, nombre.c_str());
-
-    // TODO: Agregar Validaciones [DNI] - unique - maxLength[8]
-    printf("DNI: "); cin >> nuevoCliente.dni;
-    // TODO: Agregar Validaciones [Telefono] - maxLength[9]
-    printf("Telefono: "); cin >> nuevoCliente.telefono;
-
-
-
+void agregarCliente(Cliente& nuevoCliente) {
     nuevoCliente.id = idClienteDisponible++;
+
     clientes.push_back(nuevoCliente);
 }
 
-void mostrarClientes() {
-    printf("Clientes:\n");
-    for(size_t i = 0; i < clientes.size(); i++) {
-        cout << "Cliente #" << (i+1) << ":\n";
-        cout << clientes[i] << "\n";
-    }
+vector<Cliente> obtenerClientes() {
+    return clientes;
 }
 
 void guardarClientes() {

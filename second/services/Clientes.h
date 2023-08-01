@@ -3,10 +3,9 @@
 
 #include "../Definitions.h"
 
-ostream& operator<<(ostream& os, const Cliente& cli);
 void inicializarClientes();
-void agregarCliente();
-void mostrarClientes();
+void agregarCliente(Cliente& nuevoCliente);
+vector<Cliente> obtenerClientes();
 void guardarClientes();
 
 #endif
