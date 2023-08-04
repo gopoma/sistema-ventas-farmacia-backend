@@ -55,21 +55,6 @@ typedef struct VentaCabecera {
 } VentaCabecera;
 
 
-typedef struct VentaMedicamento {
-    unsigned long long medicamento;
-    unsigned int cantidad;
-    unsigned int precio; // en céntimos
-} VentaMedicamento;
-
-
-typedef struct Venta {
-    unsigned long long id;
-    unsigned long long cliente;
-    vector<VentaMedicamento> medicamentos;
-    unsigned int total;
-} Venta;
-
-
 unsigned long long idClienteDisponible;
 vector<Cliente> clientes;
 unordered_map<unsigned long long, Cliente> clientesIndexadosPorId;

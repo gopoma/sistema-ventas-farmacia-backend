@@ -6,7 +6,7 @@
 void inicializarVentas();
 vector<VentaCabecera> obtenerVentas();
 void agregarMedicamentoAlCarrito(VentaDetalle d);
-void agregarVenta(Venta nuevaVenta);
+void agregarVenta(VentaCabecera nuevaVenta);
 void guardarVentas();
 
 #endif
