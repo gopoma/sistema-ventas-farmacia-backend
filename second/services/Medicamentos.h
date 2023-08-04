@@ -6,6 +6,7 @@
 void inicializarMedicamentos();
 void agregarMedicamento(Medicamento& nuevoMedicamento);
 vector<Medicamento> obtenerMedicamentos();
+Medicamento obtenerMedicamentoPorId(unsigned long long id);
 void guardarMedicamentos();
 
 #endif

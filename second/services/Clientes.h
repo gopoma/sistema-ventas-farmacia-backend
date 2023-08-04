@@ -6,6 +6,8 @@
 void inicializarClientes();
 void agregarCliente(Cliente& nuevoCliente);
 vector<Cliente> obtenerClientes();
+Cliente obtenerClientePorId(unsigned long long id);
+Cliente obtenerClientePorDNI(string dni);
 void guardarClientes();
 
 #endif

@@ -12,6 +12,10 @@ void inicializarMedicamentos() {
         medicamentos.push_back(m);
     }
 
+    for(Medicamento& m: medicamentos) {
+        medicamentosIndexadosPorId[m.id] = m;
+    }
+
     medicamentosEntrada.close();
 }
 
@@ -19,10 +23,16 @@ void agregarMedicamento(Medicamento& nuevoMedicamento) {
     nuevoMedicamento.id = idMedicamentoDisponible++;
 
     medicamentos.push_back(nuevoMedicamento);
+
+    medicamentosIndexadosPorId[nuevoMedicamento.id] = nuevoMedicamento;
 }
 
 vector<Medicamento> obtenerMedicamentos() {
     return medicamentos;
+}
+
+Medicamento obtenerMedicamentoPorId(unsigned long long id) {
+    return medicamentosIndexadosPorId[id];
 }
 
 void guardarMedicamentos() {

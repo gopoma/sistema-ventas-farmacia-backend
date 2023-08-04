@@ -59,8 +59,14 @@ typedef struct VentaCabecera {
 
 unsigned long long idClienteDisponible;
 vector<Cliente> clientes;
+unordered_map<unsigned long long, Cliente> clientesIndexadosPorId;
+unordered_map<string, Cliente> clientesIndexadosPorDNI;
+
+
 unsigned long long idMedicamentoDisponible;
 vector<Medicamento> medicamentos;
+unordered_map<unsigned long long, Medicamento> medicamentosIndexadosPorId;
+
 
 const string RCliente = "Cliente";
 const string RMedicamento = "Medicamento";

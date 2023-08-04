@@ -12,6 +12,11 @@ void inicializarClientes() {
         clientes.push_back(c);
     }
 
+    for(Cliente& c: clientes) {
+        clientesIndexadosPorId[c.id] = c;
+        clientesIndexadosPorDNI[c.dni] = c;
+    }
+
     clientesEntrada.close();
 }
 
@@ -19,10 +24,21 @@ void agregarCliente(Cliente& nuevoCliente) {
     nuevoCliente.id = idClienteDisponible++;
 
     clientes.push_back(nuevoCliente);
+
+    clientesIndexadosPorId[nuevoCliente.id] = nuevoCliente;
+    clientesIndexadosPorDNI[nuevoCliente.dni] = nuevoCliente;
 }
 
 vector<Cliente> obtenerClientes() {
     return clientes;
+}
+
+Cliente obtenerClientePorId(unsigned long long id) {
+    return clientesIndexadosPorId[id];
+}
+
+Cliente obtenerClientePorDNI(string dni) {
+    return clientesIndexadosPorDNI[dni];
 }
 
 void guardarClientes() {
