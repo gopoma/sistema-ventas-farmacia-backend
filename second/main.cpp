@@ -2,6 +2,8 @@
 #include "./services/Clientes.cpp"
 #include "./services/Medicamentos.h"
 #include "./services/Medicamentos.cpp"
+#include "./services/Ventas.h"
+#include "./services/Ventas.cpp"
 
 ostream &operator<<(ostream &os, const Cliente &cli);
 ostream &operator<<(ostream &os, const Medicamento &m);
@@ -179,6 +181,7 @@ void inicializar()
 {
     inicializarClientes();
     inicializarMedicamentos();
+    inicializarVentas();
 }
 
 void mostrarMenu()

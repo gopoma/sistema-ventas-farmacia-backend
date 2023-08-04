@@ -41,20 +41,33 @@ typedef struct Medicamento {
 
 
 typedef struct VentaDetalle {
-    unsigned long long venta;
-    unsigned long long medicamento;
+    Medicamento medicamento;
     unsigned int cantidad;
     unsigned int precio; // en céntimos
 } VentaDetalle;
 
 
 typedef struct VentaCabecera {
-  unsigned long long id;
-  unsigned long long cliente;
-  vector<VentaDetalle> medicamentos;
-  unsigned int total;
+    unsigned long long id;
+    Cliente cliente;
+    vector<VentaDetalle> medicamentos;
+    unsigned int total;
 } VentaCabecera;
 
+
+typedef struct VentaMedicamento {
+    unsigned long long medicamento;
+    unsigned int cantidad;
+    unsigned int precio; // en céntimos
+} VentaMedicamento;
+
+
+typedef struct Venta {
+    unsigned long long id;
+    unsigned long long cliente;
+    vector<VentaMedicamento> medicamentos;
+    unsigned int total;
+} Venta;
 
 
 unsigned long long idClienteDisponible;
@@ -68,11 +81,18 @@ vector<Medicamento> medicamentos;
 unordered_map<unsigned long long, Medicamento> medicamentosIndexadosPorId;
 
 
+unsigned long long idVentaDisponible;
+vector<VentaCabecera> ventas;
+vector<VentaDetalle> carrito;
+
+
 const string RCliente = "Cliente";
 const string RMedicamento = "Medicamento";
+const string RVenta = "Venta";
 unordered_map<string, string> STORAGE_PATH = {
     {RCliente, "./database/clientes.dat"},
-    {RMedicamento, "./database/medicamentos.dat"}
+    {RMedicamento, "./database/medicamentos.dat"},
+    {RVenta, "./database/ventas.dat"}
 };
 
 
